@@ -2,21 +2,34 @@
   --bg-color: #ffffff;
   --clock-bg: #ffffff;
   --hand-color: #1a1a1a;
-  --hand-width: 2px;
-  --clock-size: 40px;
-  --grid-gap: 1px;
+  --grid-gap: 1.5px;
+  --attribution-height: 24px;
+  --margin: 5px;
+  /* 25 cols, 9 rows. Calculate size to fit viewport minus margins and attribution */
+  /* Available width = 100vw - 2 * margin - 24 * gap */
+  /* Available height = 100vh - 2 * margin - attribution-height - 8 * gap */
+  --clock-size: min(calc((100vw - 2 * var(--margin) - 24 * var(--grid-gap)) / 25),
+      calc((100vh - 2 * var(--margin) - var(--attribution-height) - 8 * var(--grid-gap)) / 9));
+  --hand-width: max(1.2px, calc(var(--clock-size) / 18));
 }
 
 body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: var(--margin);
+  box-sizing: border-box;
 }
 
 .wall-container {
@@ -24,8 +37,9 @@ body {
   grid-template-columns: repeat(25, var(--clock-size));
   grid-template-rows: repeat(9, var(--clock-size));
   gap: var(--grid-gap);
-  padding: 40px;
-  background: var(--bg-color);
+  flex-grow: 1;
+  align-content: center;
+  justify-content: center;
 }
 
 .clock {
@@ -34,8 +48,8 @@ body {
   background: var(--clock-bg);
   border-radius: 50%;
   position: relative;
-  /* subtle border to distinguish white on white if needed, or leave clean */
-  border: 1px solid #f0f0f0;
+  border: 1px solid #f3f3f3;
+  box-sizing: border-box;
 }
 
 .hand {
@@ -46,17 +60,19 @@ body {
   background: var(--hand-color);
   transform-origin: bottom center;
   border-radius: 4px;
-}.attribution {
-  position: fixed;
-  right: 1.5rem;
-  top: 50%;
-  transform: rotate(-90deg) translate(50%, 0);
-  transform-origin: center right;
-  font-size: 0.7rem;
+}
+
+.attribution {
+  height: var(--attribution-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #bbb;
+  letter-spacing: 0.25em;
+  color: #ccc;
   font-weight: 300;
   white-space: nowrap;
   pointer-events: none;
+  width: 100%;
 }
