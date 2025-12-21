@@ -1,0 +1,62 @@
+:root {
+  --bg-color: #ffffff;
+  --clock-bg: #ffffff;
+  --hand-color: #1a1a1a;
+  --hand-width: 2px;
+  --clock-size: 40px;
+  --grid-gap: 1px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+.wall-container {
+  display: grid;
+  grid-template-columns: repeat(25, var(--clock-size));
+  grid-template-rows: repeat(9, var(--clock-size));
+  gap: var(--grid-gap);
+  padding: 40px;
+  background: var(--bg-color);
+}
+
+.clock {
+  width: var(--clock-size);
+  height: var(--clock-size);
+  background: var(--clock-bg);
+  border-radius: 50%;
+  position: relative;
+  /* subtle border to distinguish white on white if needed, or leave clean */
+  border: 1px solid #f0f0f0;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: var(--hand-width);
+  background: var(--hand-color);
+  transform-origin: bottom center;
+  border-radius: 4px;
+}.attribution {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: rotate(-90deg) translate(50%, 0);
+  transform-origin: center right;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #bbb;
+  font-weight: 300;
+  white-space: nowrap;
+  pointer-events: none;
+}
