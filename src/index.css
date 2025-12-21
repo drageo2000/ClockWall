@@ -2,14 +2,14 @@
   --bg-color: #ffffff;
   --clock-bg: #ffffff;
   --hand-color: #1a1a1a;
-  --grid-gap: 1.5px;
+  --grid-gap: 0px;
   --attribution-height: 24px;
   --margin: 5px;
   /* 25 cols, 9 rows. Calculate size to fit viewport minus margins and attribution */
   /* Available width = 100vw - 2 * margin - 24 * gap */
   /* Available height = 100vh - 2 * margin - attribution-height - 8 * gap */
-  --clock-size: min(calc((100vw - 2 * var(--margin) - 24 * var(--grid-gap)) / 25),
-      calc((100vh - 2 * var(--margin) - var(--attribution-height) - 8 * var(--grid-gap)) / 9));
+  --clock-size: min(calc((100vw - 2 * var(--margin)) / 25),
+      calc((100vh - 2 * var(--margin) - var(--attribution-height)) / 9));
   --hand-width: max(1.2px, calc(var(--clock-size) / 18));
 }
 
@@ -70,7 +70,7 @@ body {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: #ccc;
+  color: hsl(154, 45%, 34%);
   font-weight: 300;
   white-space: nowrap;
   pointer-events: none;
