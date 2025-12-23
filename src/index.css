@@ -5,10 +5,10 @@
   --grid-gap: 0px;
   --attribution-height: 24px;
   --margin: 5px;
-  /* 25 cols, 9 rows. Calculate size to fit viewport minus margins and attribution */
+  /* 39 cols, 9 rows. Calculate size to fit viewport minus margins and attribution */
   /* Available width = 100vw - 2 * margin - 24 * gap */
   /* Available height = 100vh - 2 * margin - attribution-height - 8 * gap */
-  --clock-size: min(calc((100vw - 2 * var(--margin)) / 25),
+  --clock-size: min(calc((100vw - 2 * var(--margin)) / 39),
       calc((100vh - 2 * var(--margin) - var(--attribution-height)) / 9));
   --hand-width: max(1.2px, calc(var(--clock-size) / 18));
 }
@@ -34,7 +34,7 @@ body {
 
 .wall-container {
   display: grid;
-  grid-template-columns: repeat(25, var(--clock-size));
+  grid-template-columns: repeat(39, var(--clock-size));
   grid-template-rows: repeat(9, var(--clock-size));
   gap: var(--grid-gap);
   flex-grow: 1;

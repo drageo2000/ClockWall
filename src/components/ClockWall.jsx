@@ -51,7 +51,7 @@ const FONT_5x9 = {
 const ClockWall = () => {
     const [timeStr, setTimeStr] = useState("");
     const [clocks, setClocks] = useState([]);
-    const cols = 25;
+    const cols = 39;
     const rows = 9;
 
     // Helper to get normalized target rotation (0-359)
@@ -64,9 +64,19 @@ const ClockWall = () => {
         else if (c === 12) { charIndex = 2; localCol = 2; }
         else if (c >= 14 && c <= 18) { charIndex = 3; localCol = c - 14; }
         else if (c >= 20 && c <= 24) { charIndex = 4; localCol = c - 20; }
+        // Seconds extension
+        else if (c === 26) { charIndex = 5; localCol = 2; }
+        else if (c >= 28 && c <= 32) { charIndex = 6; localCol = c - 28; }
+        else if (c >= 34 && c <= 38) { charIndex = 7; localCol = c - 34; }
 
         if (charIndex !== -1) {
-            const chars = [currentTime[0], currentTime[1], ':', currentTime[3], currentTime[4]];
+            const chars = [
+                currentTime[0], currentTime[1], 
+                ':', 
+                currentTime[3], currentTime[4],
+                ':',
+                currentTime[6], currentTime[7]
+            ];
             const char = chars[charIndex];
             const pattern = FONT_5x9[char];
 
@@ -103,7 +113,8 @@ const ClockWall = () => {
             const now = new Date();
             const hh = String(now.getHours()).padStart(2, '0');
             const mm = String(now.getMinutes()).padStart(2, '0');
-            const newTimeStr = `${hh}:${mm}`;
+            const ss = String(now.getSeconds()).padStart(2, '0');
+            const newTimeStr = `${hh}:${mm}:${ss}`;
 
             setTimeStr(prev => {
                 if (prev !== newTimeStr) {
